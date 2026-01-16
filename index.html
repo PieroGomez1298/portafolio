@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio | Piero Gomez</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        /* --- VARIABLES DE COLORES --- */
+        :root {
+            /* Modo Claro (Por defecto) */
+            --primary: #2563eb; 
+            --bg-color: #ffffff;
+            --text-main: #0f172a;
+            --text-secondary: #64748b;
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --nav-bg: rgba(255, 255, 255, 0.8);
+            --shadow: 0 10px 30px -10px rgba(0,0,0,0.1);
+        }
+
+        /* Variables para Modo Oscuro */
+        body.dark-mode {
+            --primary: #60a5fa; 
+            --bg-color: #0f172a; 
+            --text-main: #f1f5f9; 
+            --text-secondary: #94a3b8; 
+            --card-bg: rgba(30, 41, 59, 0.95); 
+            --nav-bg: rgba(15, 23, 42, 0.8);
+            --shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            background-color: var(--bg-color);
+        }
+
+        /* --- Navegación --- */
+        nav {
+            background: var(--nav-bg);
+            backdrop-filter: blur(10px);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--text-main);
+        }
+
+        .logo span { color: var(--primary); }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem; /* Espacio entre elementos */
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 500;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Botones de control (Tema e Idioma) */
+        .controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .icon-btn {
+            background: none;
+            border: 1px solid var(--text-secondary);
+            cursor: pointer;
+            font-size: 1rem;
+            color: var(--text-main);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .icon-btn:hover {
+            background-color: rgba(128,128,128, 0.1);
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 5%;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .greeting {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        .name-dynamic {
+            font-size: 5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            background: linear-gradient(270deg, #2563eb, #9333ea, #db2777, #2563eb);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient-animation 6s ease infinite;
+        }
+
+        @keyframes gradient-animation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-desc {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+            font-style: italic;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--text-main);
+            color: var(--bg-color);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            background: var(--primary);
+            color: white;
+        }
+
+        /* --- Skills --- */
+        .skills-container {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .skill-tag {
+            background: var(--card-bg);
+            color: var(--text-main);
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border: 1px solid rgba(128,128,128, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            transform: translateY(-3px);
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* --- Projects --- */
+        .section {
+            padding: 6rem 5%;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 4rem;
+            color: var(--text-main);
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            margin-bottom: 4rem;
+            max-width: 1100px;
+            margin-left: auto;
+            margin-right: auto;
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(128,128,128, 0.1);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-content {
+            padding: 2.5rem;
+        }
+
+        .project-content p {
+            color: var(--text-secondary);
+        }
+
+        .powerbi-container {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%; 
+            background: #cbd5e1;
+        }
+
+        .powerbi-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* --- About --- */
+        .about-container {
+            background: var(--card-bg);
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            border: 1px solid rgba(128,128,128, 0.1);
+        }
+
+        .about-container p {
+            color: var(--text-secondary);
+        }
+        
+        .about-container strong {
+            color: var(--text-main);
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: var(--nav-bg);
+            color: var(--text-main);
+            position: relative;
+            border-top: 1px solid rgba(128,128,128, 0.1);
+        }
+
+        .footer-subtitle {
+            margin: 1rem 0;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .name-dynamic { font-size: 3rem; }
+            .nav-links a { display: none; } /* Ocultar textos menú */
+            .controls { margin-left: auto; } /* Mantener controles */
+            .about-container { padding: 2rem; }
+        }
+    </style>
+
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+</head>
+<body>
+
+    <div id="particles-js"></div>
+
+    <nav>
+        <div class="logo">Piero<span>.Data</span></div>
+        
+        <div class="nav-links">
+            <a href="#proyectos" data-key="nav_projects">Proyectos</a>
+            <a href="#sobre-mi" data-key="nav_about">Sobre mí</a>
+            <a href="#contacto" data-key="nav_contact">Contacto</a>
+            
+            <div class="controls">
+                <button class="icon-btn" id="lang-toggle" title="Cambiar idioma / Change language">
+                    <span id="lang-text">ES</span>
+                </button>
+
+                <button class="icon-btn" id="theme-toggle" title="Cambiar tema">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <p class="greeting reveal-top" data-key="hero_greeting">Hola 👋🏼, soy</p>
+        
+        <h1 class="name-dynamic reveal-top">Piero Gomez</h1>
+        
+        <h2 class="hero-subtitle reveal-delay-1" data-key="hero_role">
+            Data Analytics & Business Intelligence Internship / Junior
+        </h2>
+        
+        <p class="hero-desc reveal-delay-1" data-key="hero_quote">
+            "Transformo datos complejos en historias claras"
+        </p>
+        
+        <div class="skills-container reveal-delay-2">
+            <span class="skill-tag"><i class="fas fa-chart-bar"></i> Power BI</span>
+            <span class="skill-tag"><i class="fas fa-database"></i> SQL</span>
+            <span class="skill-tag"><i class="fab fa-python"></i> Python</span>
+            <span class="skill-tag"><i class="fas fa-cogs"></i> ETL</span>
+            <span class="skill-tag"><i class="fas fa-brain"></i> Business Intelligence</span>
+        </div>
+        
+        <div style="margin-top: 3rem;" class="reveal-delay-3">
+            <a href="#proyectos" class="btn" data-key="hero_btn">Ver mi trabajo</a>
+        </div>
+    </section>
+
+    <section id="proyectos" class="section">
+        <h2 class="section-title reveal-bottom" data-key="section_projects">Proyectos Destacados</h2>
+
+        <div class="project-card reveal-bottom">
+            <div class="powerbi-container">
+                <iframe title="Dashboard" src="https://app.powerbi.com/view?r=eyJrIjoiNjA4MGQ1NWItZWY0OC00YTI3LThhNDEtZWM5NDFmNThmNTIyIiwidCI6IjBlMGNiMDYwLTA5YWQtNDlmNS1hMDA1LTY4YjliNDlhYTFmNiIsImMiOjR9" frameborder="0" allowFullScreen="true"></iframe>
+            </div>
+            <div class="project-content">
+                <p data-key="project_desc_1">
+                    Dashboard estratégico diseñado para identificar oportunidades de negocio en el sector automotriz. 
+                    A través de <strong>Power BI</strong>, se visualizan las tendencias de marcas, modelos y antigüedad 
+                    del parque automotor, facilitando la toma de decisiones para la importación de autopartes.
+                </p>
+                <div class="skills-container" style="justify-content: start; margin-top: 1.5rem;">
+                    <span class="skill-tag">Power BI</span>
+                    <span class="skill-tag">Data Modeling</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="sobre-mi" class="section">
+        <div class="about-container reveal-bottom">
+            <h2 class="section-title" data-key="section_about" style="margin-bottom: 1rem;">Sobre mí</h2>
+            <p style="font-size: 1.1rem; margin-bottom: 2rem;" data-key="about_p1">
+                Soy <strong>Ingeniero Industrial</strong> con una sólida transición hacia el mundo del Dato.
+            </p>
+            <p style="font-size: 1.1rem;" data-key="about_p2">
+                Actualmente estoy profundizando mis conocimientos con un <strong>Máster en Big Data & BI en Madrid</strong>. 
+                Mi enfoque combina la visión técnica (SQL, Python) con el entendimiento estratégico del negocio.
+            </p>
+        </div>
+    </section>
+
+    <footer id="contacto">
+        <h2 class="reveal-bottom" data-key="footer_title">¿Trabajamos juntos?</h2>
+        <p class="footer-subtitle reveal-bottom" data-key="footer_subtitle">Estoy disponible para nuevas oportunidades</p>
+        
+        <div style="margin: 2.5rem 0;">
+            <a href="mailto:Piero1298@outlook.es" class="btn">Piero1298@outlook.es</a>
+        </div>
+        
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/piero-gomez-velazco/" target="_blank" style="font-size: 2rem; color: var(--text-main); transition: color 0.3s;">
+                <i class="fab fa-linkedin"></i>
+            </a>
+        </div>
+        <p style="margin-top: 3rem; font-size: 0.8rem; opacity: 0.5;">&copy; 2026 Victor Piero Gomez Velazco</p>
+    </footer>
+
+    <script>
+        // --- 1. CONFIGURACIÓN SCROLL REVEAL ---
+        const sr = ScrollReveal({ origin: 'bottom', distance: '30px', duration: 1000, delay: 100, reset: false });
+        sr.reveal('.reveal-bottom');
+        sr.reveal('.reveal-top', { origin: 'top' });
+        sr.reveal('.reveal-delay-1', { delay: 200 });
+        sr.reveal('.reveal-delay-2', { delay: 300 });
+        sr.reveal('.reveal-delay-3', { delay: 400 });
+        sr.reveal('.project-card', { interval: 200 });
+
+        // --- 2. DICCIONARIO DE TRADUCCIONES ---
+        const translations = {
+            es: {
+                nav_projects: "Proyectos",
+                nav_about: "Sobre mí",
+                nav_contact: "Contacto",
+                hero_greeting: "Hola 👋🏼, soy",
+                hero_role: "Data Analytics & Business Intelligence Internship / Junior",
+                hero_quote: "\"Transformo datos complejos en historias claras\"",
+                hero_btn: "Ver mi trabajo",
+                section_projects: "Proyectos Destacados",
+                project_desc_1: "Dashboard estratégico diseñado para identificar oportunidades de negocio en el sector automotriz. A través de <strong>Power BI</strong>, se visualizan las tendencias de marcas, modelos y antigüedad del parque automotor, facilitando la toma de decisiones para la importación de autopartes.",
+                section_about: "Sobre mí",
+                about_p1: "Soy <strong>Ingeniero Industrial</strong> con una sólida transición hacia el mundo del Dato.",
+                about_p2: "Actualmente estoy profundizando mis conocimientos con un <strong>Máster en Big Data & BI en Madrid</strong>. Mi enfoque combina la visión técnica (SQL, Python) con el entendimiento estratégico del negocio.",
+                footer_title: "¿Trabajamos juntos?",
+                footer_subtitle: "Estoy disponible para nuevas oportunidades"
+            },
+            en: {
+                nav_projects: "Projects",
+                nav_about: "About Me",
+                nav_contact: "Contact",
+                hero_greeting: "Hi 👋🏼, I'm",
+                hero_role: "Data Analytics & Business Intelligence Internship / Junior",
+                hero_quote: "\"I transform complex data into clear stories\"",
+                hero_btn: "View my work",
+                section_projects: "Featured Projects",
+                project_desc_1: "Strategic dashboard designed to identify business opportunities in the automotive sector. Using <strong>Power BI</strong>, it visualizes trends in brands, models, and vehicle age, facilitating data-driven decisions for auto parts importation.",
+                section_about: "About Me",
+                about_p1: "I am an <strong>Industrial Engineer</strong> transitioning solidly into the Data world.",
+                about_p2: "I am currently deepening my knowledge with a <strong>Master in Big Data & BI in Madrid</strong>. My approach combines technical vision (SQL, Python) with strategic business understanding.",
+                footer_title: "Let's work together?",
+                footer_subtitle: "I am available for new opportunities"
+            }
+        };
+
+        // --- 3. LOGICA DE IDIOMA ---
+        const langToggle = document.getElementById('lang-toggle');
+        const langText = document.getElementById('lang-text');
+        let currentLang = localStorage.getItem('lang') || 'es'; // Por defecto español
+
+        function updateLanguage(lang) {
+            document.querySelectorAll('[data-key]').forEach(elem => {
+                const key = elem.getAttribute('data-key');
+                if (translations[lang][key]) {
+                    elem.innerHTML = translations[lang][key];
+                }
+            });
+            langText.textContent = lang === 'es' ? 'ES' : 'EN';
+        }
+
+        // Aplicar idioma al cargar
+        updateLanguage(currentLang);
+
+        langToggle.addEventListener('click', () => {
+            currentLang = currentLang === 'es' ? 'en' : 'es';
+            updateLanguage(currentLang);
+            localStorage.setItem('lang', currentLang);
+        });
+
+        // --- 4. LOGICA MODO OSCURO ---
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+        const icon = themeToggle.querySelector('i');
+        const currentTheme = localStorage.getItem('theme');
+
+        if (currentTheme === 'dark') {
+            body.classList.add('dark-mode');
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // --- 5. PARTICULAS ---
+        particlesJS("particles-js", {
+            "particles": {
+                "number": { "value": 40, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": "#94a3b8" },
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.5, "random": false },
+                "size": { "value": 3, "random": true },
+                "line_linked": { "enable": true, "distance": 150, "color": "#94a3b8", "opacity": 0.4, "width": 1 },
+                "move": { "enable": true, "speed": 2, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" } },
+                "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 1 } } }
+            },
+            "retina_detect": true
+        });
+    </script>
+</body>
+</html>
