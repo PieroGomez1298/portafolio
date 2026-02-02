@@ -18,6 +18,8 @@
             --card-bg: rgba(255, 255, 255, 0.95);
             --nav-bg: rgba(255, 255, 255, 0.8);
             --shadow: 0 10px 30px -10px rgba(0,0,0,0.1);
+            --btn-repo-bg: #24292e; /* Color GitHub */
+            --btn-repo-text: #ffffff;
         }
 
         /* Variables para Modo Oscuro */
@@ -29,6 +31,8 @@
             --card-bg: rgba(30, 41, 59, 0.95); 
             --nav-bg: rgba(15, 23, 42, 0.8);
             --shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+            --btn-repo-bg: #ffffff;
+            --btn-repo-text: #0f172a;
         }
 
         html {
@@ -85,7 +89,7 @@
         .nav-links {
             display: flex;
             align-items: center;
-            gap: 2rem; /* Espacio entre elementos */
+            gap: 2rem; 
         }
 
         .nav-links a {
@@ -100,7 +104,7 @@
             color: var(--primary);
         }
 
-        /* Botones de control (Tema e Idioma) */
+        /* Botones de control */
         .controls {
             display: flex;
             align-items: center;
@@ -244,7 +248,7 @@
             border-radius: 20px;
             overflow: hidden;
             box-shadow: var(--shadow);
-            margin-bottom: 4rem;
+            margin-bottom: 5rem; /* Separación entre proyectos */
             max-width: 1100px;
             margin-left: auto;
             margin-right: auto;
@@ -259,9 +263,43 @@
         .project-content {
             padding: 2.5rem;
         }
+        
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-header h3 {
+            font-size: 1.8rem;
+            color: var(--text-main);
+            margin: 0;
+        }
+
+        .btn-repo {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: var(--btn-repo-bg);
+            color: var(--btn-repo-text);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: opacity 0.3s;
+        }
+
+        .btn-repo:hover {
+            opacity: 0.8;
+        }
 
         .project-content p {
             color: var(--text-secondary);
+            margin-bottom: 1.5rem;
         }
 
         .powerbi-container {
@@ -315,13 +353,21 @@
             color: var(--text-secondary);
             font-size: 1.2rem;
         }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
 
         /* Responsive */
         @media (max-width: 768px) {
             .name-dynamic { font-size: 3rem; }
-            .nav-links a { display: none; } /* Ocultar textos menú */
-            .controls { margin-left: auto; } /* Mantener controles */
+            .nav-links a { display: none; } 
+            .controls { margin-left: auto; }
             .about-container { padding: 2rem; }
+            .project-header { flex-direction: column; }
         }
     </style>
 
@@ -383,15 +429,47 @@
 
         <div class="project-card reveal-bottom">
             <div class="powerbi-container">
+                <iframe title="Dashboard_Calidad_Aire_Madrid_2025" src="https://app.powerbi.com/view?r=eyJrIjoiNjc4YTIwY2EtNGI3NC00ZTI3LWE1YWMtODY0ODViMDM4NzhjIiwidCI6IjBlMGNiMDYwLTA5YWQtNDlmNS1hMDA1LTY4YjliNDlhYTFmNiIsImMiOjR9" frameborder="0" allowFullScreen="true"></iframe>
+            </div>
+            <div class="project-content">
+                <div class="project-header">
+                    <h3 data-key="project_title_2">Calidad del Aire en Madrid 2025</h3>
+                    <a href="https://github.com/PieroGomez1298/Calidad_del_aire_Madrid" target="_blank" class="btn-repo">
+                        <i class="fab fa-github"></i> <span data-key="btn_repo">Ver Código</span>
+                    </a>
+                </div>
+                
+                <p data-key="project_desc_2">
+                    Proyecto integral donde analicé la contaminación en Madrid. Realicé un proceso <strong>ETL con Python</strong> para extraer datos oficiales, los procesé en <strong>SQL Server</strong> y diseñé este dashboard en Power BI para visualizar patrones de calidad del aire.
+                </p>
+
+                <div class="skills-container" style="justify-content: start;">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">SQL Server</span>
+                    <span class="skill-tag">ETL</span>
+                    <span class="skill-tag">Power BI</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="project-card reveal-bottom">
+            <div class="powerbi-container">
                 <iframe title="Dashboard" src="https://app.powerbi.com/view?r=eyJrIjoiNjA4MGQ1NWItZWY0OC00YTI3LThhNDEtZWM5NDFmNThmNTIyIiwidCI6IjBlMGNiMDYwLTA5YWQtNDlmNS1hMDA1LTY4YjliNDlhYTFmNiIsImMiOjR9" frameborder="0" allowFullScreen="true"></iframe>
             </div>
             <div class="project-content">
+                <div class="project-header">
+                    <h3 data-key="project_title_1">Importaciones Vehiculares Perú</h3>
+                    <a href="https://github.com/PieroGomez1298" target="_blank" class="btn-repo">
+                        <i class="fab fa-github"></i> <span data-key="btn_repo">Ver Código</span>
+                    </a>
+                </div>
+
                 <p data-key="project_desc_1">
                     Dashboard estratégico diseñado para identificar oportunidades de negocio en el sector automotriz. 
                     A través de <strong>Power BI</strong>, se visualizan las tendencias de marcas, modelos y antigüedad 
-                    del parque automotor, facilitando la toma de decisiones para la importación de autopartes.
+                    del parque automotor, facilitando la toma de decisiones.
                 </p>
-                <div class="skills-container" style="justify-content: start; margin-top: 1.5rem;">
+                <div class="skills-container" style="justify-content: start;">
                     <span class="skill-tag">Power BI</span>
                     <span class="skill-tag">Data Modeling</span>
                 </div>
@@ -424,6 +502,9 @@
             <a href="https://www.linkedin.com/in/piero-gomez-velazco/" target="_blank" style="font-size: 2rem; color: var(--text-main); transition: color 0.3s;">
                 <i class="fab fa-linkedin"></i>
             </a>
+            <a href="https://github.com/PieroGomez1298" target="_blank" style="font-size: 2rem; color: var(--text-main); transition: color 0.3s;">
+                <i class="fab fa-github"></i>
+            </a>
         </div>
         <p style="margin-top: 3rem; font-size: 0.8rem; opacity: 0.5;">&copy; 2026 Victor Piero Gomez Velazco</p>
     </footer>
@@ -449,7 +530,17 @@
                 hero_quote: "\"Transformo datos complejos en historias claras\"",
                 hero_btn: "Ver mi trabajo",
                 section_projects: "Proyectos Destacados",
-                project_desc_1: "Dashboard estratégico diseñado para identificar oportunidades de negocio en el sector automotriz. A través de <strong>Power BI</strong>, se visualizan las tendencias de marcas, modelos y antigüedad del parque automotor, facilitando la toma de decisiones para la importación de autopartes.",
+                
+                // Proyecto 1 (Antiguo)
+                project_title_1: "Importaciones Vehiculares Perú",
+                project_desc_1: "Dashboard estratégico diseñado para identificar oportunidades de negocio en el sector automotriz. A través de <strong>Power BI</strong>, se visualizan las tendencias de marcas, modelos y antigüedad del parque automotor, facilitando la toma de decisiones.",
+                
+                // Proyecto 2 (Nuevo - Aire Madrid)
+                project_title_2: "Calidad del Aire en Madrid 2025",
+                project_desc_2: "Proyecto integral donde analicé la contaminación en Madrid. Realicé un proceso <strong>ETL con Python</strong> para extraer datos oficiales, los procesé en <strong>SQL Server</strong> y diseñé este dashboard en Power BI para visualizar patrones de calidad del aire.",
+                
+                btn_repo: "Ver Código",
+                
                 section_about: "Sobre mí",
                 about_p1: "Soy <strong>Ingeniero Industrial</strong> con una sólida transición hacia el mundo del Dato.",
                 about_p2: "Actualmente estoy profundizando mis conocimientos con un <strong>Máster en Big Data & BI en Madrid</strong>. Mi enfoque combina la visión técnica (SQL, Python) con el entendimiento estratégico del negocio.",
@@ -465,7 +556,17 @@
                 hero_quote: "\"I transform complex data into clear stories\"",
                 hero_btn: "View my work",
                 section_projects: "Featured Projects",
-                project_desc_1: "Strategic dashboard designed to identify business opportunities in the automotive sector. Using <strong>Power BI</strong>, it visualizes trends in brands, models, and vehicle age, facilitating data-driven decisions for auto parts importation.",
+                
+                // Project 1 (Old)
+                project_title_1: "Vehicle Imports Peru",
+                project_desc_1: "Strategic dashboard designed to identify business opportunities in the automotive sector. Using <strong>Power BI</strong>, it visualizes trends in brands, models, and vehicle age, facilitating data-driven decisions.",
+                
+                // Project 2 (New - Madrid Air)
+                project_title_2: "Madrid Air Quality 2025",
+                project_desc_2: "Comprehensive project analyzing pollution in Madrid. I performed an <strong>ETL process with Python</strong> to extract official data, processed it in <strong>SQL Server</strong>, and designed this Power BI dashboard to visualize air quality patterns.",
+                
+                btn_repo: "View Code",
+                
                 section_about: "About Me",
                 about_p1: "I am an <strong>Industrial Engineer</strong> transitioning solidly into the Data world.",
                 about_p2: "I am currently deepening my knowledge with a <strong>Master in Big Data & BI in Madrid</strong>. My approach combines technical vision (SQL, Python) with strategic business understanding.",
@@ -477,7 +578,7 @@
         // --- 3. LOGICA DE IDIOMA ---
         const langToggle = document.getElementById('lang-toggle');
         const langText = document.getElementById('lang-text');
-        let currentLang = localStorage.getItem('lang') || 'es'; // Por defecto español
+        let currentLang = localStorage.getItem('lang') || 'es'; 
 
         function updateLanguage(lang) {
             document.querySelectorAll('[data-key]').forEach(elem => {
@@ -489,7 +590,6 @@
             langText.textContent = lang === 'es' ? 'ES' : 'EN';
         }
 
-        // Aplicar idioma al cargar
         updateLanguage(currentLang);
 
         langToggle.addEventListener('click', () => {
